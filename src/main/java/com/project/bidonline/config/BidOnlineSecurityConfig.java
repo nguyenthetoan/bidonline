@@ -33,7 +33,7 @@ public class BidOnlineSecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordParameter("password")
 			.and()
 		.authorizeRequests()
-			.antMatchers("/user/bids").access("hasRole('ROLE_MEMBER')")
+			.antMatchers("/user/bids", "/user").access("hasRole('ROLE_MEMBER')")
 			.and().exceptionHandling().accessDeniedPage("/403").and()
 		.logout().logoutUrl("/user/logout").logoutSuccessUrl("/");
 		
