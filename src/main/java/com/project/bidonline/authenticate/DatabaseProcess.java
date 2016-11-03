@@ -26,13 +26,10 @@ public class DatabaseProcess implements UserDetailsService{
 		if (user == null) {
 			throw new UsernameNotFoundException("Wrong user");
 		}
-		List<GrantedAuthority> grantList = new ArrayList<>();
-		GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_MEMBER");
-		grantList.add(authority);
-		//UserDetails userDetails = (UserDetails) new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getActive() , true, true, true, grantList);
-		UserDetails userDetails = (UserDetails) new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), true, true, true, true, grantList);
+		LoggedUser loggedUser = new LoggedUser();
+		loggedUser.setUser(user);
 		
-		return userDetails;
+		return loggedUser;
 	}
 	
 }

@@ -1,6 +1,6 @@
 // default package
 package com.project.bidonline.entity;
-// Generated Oct 31, 2016 2:47:09 AM by Hibernate Tools 5.2.0.Beta1
+// Generated Nov 3, 2016 3:46:43 PM by Hibernate Tools 5.2.0.Beta1
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -25,7 +25,7 @@ public class Bid implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2139454821197708991L;
+	private static final long serialVersionUID = 1360511868646235406L;
 	private Integer id;
 	private User user;
 	private String itemName;
@@ -34,24 +34,29 @@ public class Bid implements java.io.Serializable {
 	private Integer itemQuantity;
 	private Date bidStartDate;
 	private Date bidEndDate;
-	private Float bidStartPrice;
+	private float bidStartPrice;
 	private float bidIncrement;
-	private Float bidCurrentPrice;
+	private float bidCurrentPrice;
 	private String winning;
+	private String winner;
 
 	public Bid() {
 	}
 
-	public Bid(String itemName, Date bidStartDate, Date bidEndDate, float bidIncrement) {
+	public Bid(User user, String itemName, Date bidStartDate, Date bidEndDate, float bidStartPrice, float bidIncrement,
+			float bidCurrentPrice) {
+		this.user = user;
 		this.itemName = itemName;
 		this.bidStartDate = bidStartDate;
 		this.bidEndDate = bidEndDate;
+		this.bidStartPrice = bidStartPrice;
 		this.bidIncrement = bidIncrement;
+		this.bidCurrentPrice = bidCurrentPrice;
 	}
 
 	public Bid(User user, String itemName, String itemDescription, byte[] itemImage, Integer itemQuantity,
-			Date bidStartDate, Date bidEndDate, Float bidStartPrice, float bidIncrement, Float bidCurrentPrice,
-			String winning) {
+			Date bidStartDate, Date bidEndDate, float bidStartPrice, float bidIncrement, float bidCurrentPrice,
+			String winning, String winner) {
 		this.user = user;
 		this.itemName = itemName;
 		this.itemDescription = itemDescription;
@@ -63,6 +68,7 @@ public class Bid implements java.io.Serializable {
 		this.bidIncrement = bidIncrement;
 		this.bidCurrentPrice = bidCurrentPrice;
 		this.winning = winning;
+		this.winner = winner;
 	}
 
 	@Id
@@ -78,7 +84,7 @@ public class Bid implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "item_seller")
+	@JoinColumn(name = "item_seller", nullable = false)
 	public User getUser() {
 		return this.user;
 	}
@@ -143,12 +149,12 @@ public class Bid implements java.io.Serializable {
 		this.bidEndDate = bidEndDate;
 	}
 
-	@Column(name = "bid_start_price", precision = 12, scale = 0)
-	public Float getBidStartPrice() {
+	@Column(name = "bid_start_price", nullable = false, precision = 12, scale = 0)
+	public float getBidStartPrice() {
 		return this.bidStartPrice;
 	}
 
-	public void setBidStartPrice(Float bidStartPrice) {
+	public void setBidStartPrice(float bidStartPrice) {
 		this.bidStartPrice = bidStartPrice;
 	}
 
@@ -161,12 +167,12 @@ public class Bid implements java.io.Serializable {
 		this.bidIncrement = bidIncrement;
 	}
 
-	@Column(name = "bid_current_price", precision = 12, scale = 0)
-	public Float getBidCurrentPrice() {
+	@Column(name = "bid_current_price", nullable = false, precision = 12, scale = 0)
+	public float getBidCurrentPrice() {
 		return this.bidCurrentPrice;
 	}
 
-	public void setBidCurrentPrice(Float bidCurrentPrice) {
+	public void setBidCurrentPrice(float bidCurrentPrice) {
 		this.bidCurrentPrice = bidCurrentPrice;
 	}
 
@@ -177,6 +183,15 @@ public class Bid implements java.io.Serializable {
 
 	public void setWinning(String winning) {
 		this.winning = winning;
+	}
+
+	@Column(name = "winner", length = 20)
+	public String getWinner() {
+		return this.winner;
+	}
+
+	public void setWinner(String winner) {
+		this.winner = winner;
 	}
 
 }

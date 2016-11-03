@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Your Bids </title>
+<head th:include="fragments/header :: header">
+<title id="pageTitle">Your Bids </title>
 </head>
 <body>
-	<a href="/user/logout">Logout</a>
+	<nav th:include="fragments/header :: navbar"></nav>
+	<div class="container">
+		<div class="row">
+			<a href="/user/logout">Logout</a>		
+		</div>
+	</div>
+	
 </body>
 </html>

@@ -1,6 +1,6 @@
 // default package
 package com.project.bidonline.entity;
-// Generated Oct 31, 2016 2:47:09 AM by Hibernate Tools 5.2.0.Beta1
+// Generated Nov 3, 2016 3:46:43 PM by Hibernate Tools 5.2.0.Beta1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,10 +21,9 @@ public class User implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3070082854245338843L;
+	private static final long serialVersionUID = -8215339716415195301L;
 	private String username;
 	private String password;
-	private Boolean active;
 	private Set<Bid> bids = new HashSet<Bid>(0);
 
 	public User() {
@@ -35,10 +34,9 @@ public class User implements java.io.Serializable {
 		this.password = password;
 	}
 
-	public User(String username, String password, Boolean active, Set<Bid> bids) {
+	public User(String username, String password, Set<Bid> bids) {
 		this.username = username;
 		this.password = password;
-		this.active = active;
 		this.bids = bids;
 	}
 
@@ -60,15 +58,6 @@ public class User implements java.io.Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	@Column(name = "active")
-	public Boolean getActive() {
-		return this.active;
-	}
-
-	public void setActive(Boolean active) {
-		this.active = active;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

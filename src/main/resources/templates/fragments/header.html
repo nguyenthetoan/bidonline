@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}"
+	href="/static/css/bootstrap.css" />
+<title th:include=":: #pageTitle"></title>
+</head>
+<body>
+	<nav th:fragment="navbar" class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="http://localhost:8080" class="navbar-brand">Homepage</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li th:switch="${message}">
+				
+				<a th:case="anonymousUser" href="user/login">Login</a>
+				
+				<a th:case="*" href="user/logout">logout</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</body>
+</html>
